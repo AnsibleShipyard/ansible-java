@@ -1,4 +1,8 @@
 ---
+#
+# playbook: ansible-java
+# desc: OpenJDK java installer
+#
 
 - hosts: all
   sudo: True
@@ -9,7 +13,8 @@
   gather_facts: no
   sudo: True
   vars:
-    java_version: "6"
+    version: "0.1.2" # playbook version
+    java_version: "7"
     libjvm_path: "/usr/lib/jvm/java-{{java_version}}-*/jre/lib/*/server/libjvm.so"
     libjvm_symlink_path: "/usr/lib/libjvm.so"
   tasks:
