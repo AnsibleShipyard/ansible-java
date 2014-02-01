@@ -88,7 +88,7 @@ galaxy_info:
   # Below are all categories currently available. Just as with
   # the platforms above, uncomment those that apply to your role.
   #
-  #categories:
+  categories:
   #- cloud
   #- cloud:ec2
   #- cloud:gce
@@ -102,6 +102,9 @@ galaxy_info:
   #- packaging
   #- system
   #- web
+  #- platform
+  #- framework
+  - runtime
 dependencies: []
   # List your role dependencies here, one per line. Only
   # dependencies available via galaxy should be listed here.
