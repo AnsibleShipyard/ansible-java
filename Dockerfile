@@ -1,17 +1,17 @@
 #
-# AnsibleShipyard/base-ubuntu-java
-#   docker build -t AnsibleShipyard/base-ubuntu-java .
+# jasongiedymin/ansible-java
+#   docker build -t jasongiedymin/ansible-java .
 #
 # Requires:
-# AnsibleShipyard/base-ubuntu
-#   https://github.com/AnsibleShipyard/base-ubuntu
+# jasongiedymin/ansible-java
+#   https://github.com/AnsibleShipyard/ansible-base-ubuntu
 #
 
-FROM ansibleshipyard/base-ubuntu
+FROM jasongiedymin/ansible-base-ubuntu
 MAINTAINER AnsibleShipyard
 
 # Working dir
-WORKDIR /tmp/build
+WORKDIR /tmp/build/ansible-java
 
 # ADD
 ADD meta $WORKDIR/meta
@@ -26,4 +26,4 @@ ADD tests/inventory /etc/ansible/hosts
 ADD tests/playbook.yml $WORKDIR/playbook.yml
 
 # Execute
-RUN ansible-playbook playbook.yml -c local
+RUN ansible-playbook $WORKDIR/playbook.yml -c local
