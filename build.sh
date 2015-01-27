@@ -1,8 +1,8 @@
 #!/bin/bash
 
-DOCKERNAME="jasongiedymin/ansible-java"
+DOCKERNAME="ansibleshipyard/ansible-java"
 
-time docker build -t $DOCKERNAME .
+time docker build --force-rm -t $DOCKERNAME .
 
 echo
 echo "This image is a trusted docker.io Image."

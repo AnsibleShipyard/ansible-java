@@ -1,29 +1,37 @@
 #
-# jasongiedymin/ansible-java
-#   docker build -t jasongiedymin/ansible-java .
-#
-# Requires:
-# jasongiedymin/ansible-java
-#   https://github.com/AnsibleShipyard/ansible-base-ubuntu
-#
+# ------------------------------------------------------
+#                       Dockerfile
+# ------------------------------------------------------
+# image:    ansible-java
+# tag:      latest
+# name:     ansibleshipyard/ansible-java
+# version:  v0.1.0
+# repo:     https://github.com/AnsibleShipyard/ansible-java
+# how-to:   docker build --force-rm -t ansibleshipyard/ansible-java .
+# requires: ansibleshipyard/ansible-base-ubuntu
+# authors:  github:@jasongiedymin,
+#           github:
+# ------------------------------------------------------
 
-FROM jasongiedymin/ansible-base-ubuntu
-MAINTAINER AnsibleShipyard
+FROM ansibleshipyard/ansible-base-ubuntu
+MAINTAINER ansibleshipyard
 
-# Working dir
-WORKDIR /tmp/build/ansible-java
+# -----> Env
+ENV WORKDIR /tmp/build/roles/ansible-java
+WORKDIR /tmp/build/roles/ansible-java
 
-# ADD
-ADD meta $WORKDIR/meta
-ADD tasks $WORKDIR/tasks
-ADD tests $WORKDIR/tests
-ADD vars $WORKDIR/vars
+# -----> Add assets
+# ADD ./main.yml $WORKDIR/main.yml
+# ADD ./inventory $WORKDIR/inventory
+# ADD ./playbook.yml $WORKDIR/playbook.yml
+ADD ./docker $WORKDIR/docker
+ADD ./tasks $WORKDIR/tasks
+ADD ./vars $WORKDIR/vars
+ADD ./tests $WORKDIR/tests
 
-# Here we continue to use add because
-# there are a limited number of RUNs
-# allowed.
-ADD tests/inventory /etc/ansible/hosts
-ADD tests/playbook.yml $WORKDIR/playbook.yml
+# -----> Install Galaxy Dependencies
 
-# Execute
-RUN ansible-playbook $WORKDIR/playbook.yml -c local
+# -----> Execute
+# RUN cd $WORKDIR
+RUN pwd && ls -la
+RUN ansible-playbook -i $WORKDIR/docker/inventory $WORKDIR/docker/playbook.yml -c local -vvvv
