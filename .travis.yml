@@ -19,9 +19,8 @@ script:
   # Check the role/playbook's syntax.
   - "ansible-playbook -i tests/inventory tests/$SITE --syntax-check"
 
-  # Travis has java built-in. This is a good case for Voom Test-Flight or Docker Hub.
-  # Run the role/playbook with ansible-playbook.
-  # - "ansible-playbook -i tests/inventory tests/travis.yml --connection=local --sudo -vvvv"
+  # Run travis tests
+  - "ansible-playbook -i tests/inventory tests/travis.yml --connection=local --sudo -vvvv"
 
   # Run java version
   - "java -version"

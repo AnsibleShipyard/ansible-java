@@ -11,24 +11,8 @@
   tasks:
     # Test for java
     - name: Check java
-      command: which java
-      register: java_path
+      command: java -version
+      register: java_version
 
     - debug: 
-        msg: "Java was installed in {{java_path.stdout}}"
-
-    - fail: 
-        msg: "Java Not Found, tests failed."
-      when: java_path.stdout != "/usr/bin/java"
-
-    # Test for javac
-    - name: Check javac
-      command: which javac
-      register: javac_path
-
-    - debug: 
-        msg: "javac was installed in {{javac_path.stdout}}"
-        
-    - fail: 
-        msg: "javac Not Found, tests failed."
-      when: javac_path.stdout != "/usr/bin/javac"
+        msg: "{{java_version.stdout}} was installed."
