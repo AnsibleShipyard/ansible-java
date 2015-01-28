@@ -4,9 +4,6 @@
   connection: local
   sudo: yes
   
-  roles:
-    - ansible-java
-
   tasks:
     # Test for java
     - name: Check java
