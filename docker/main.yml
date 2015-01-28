@@ -1,8 +1,0 @@
----
-
-- hosts: localhost
-  connection: local
-  sudo: yes
-  
-  roles:
-    - ansible-java
