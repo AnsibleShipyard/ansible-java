@@ -21,16 +21,11 @@ ENV WORKDIR /tmp/build/roles/ansible-java
 WORKDIR /tmp/build/roles/ansible-java
 
 # -----> Add assets
-# ADD ./main.yml $WORKDIR/main.yml
-# ADD ./inventory $WORKDIR/inventory
-# ADD ./playbook.yml $WORKDIR/playbook.yml
-ADD ./docker $WORKDIR/docker
 ADD ./tasks $WORKDIR/tasks
 ADD ./vars $WORKDIR/vars
-ADD ./tests $WORKDIR/tests
+ADD ./ci $WORKDIR/ci
 
 # -----> Install Galaxy Dependencies
 
 # -----> Execute
-RUN ansible-playbook -i $WORKDIR/docker/inventory $WORKDIR/docker/playbook.yml -c local -vvvv
-RUN ansible-playbook -i $WORKDIR/tests/inventory $WORKDIR/tests/playbook.yml -c local -vvvv
+RUN ansible-playbook -i $WORKDIR/ci/inventory $WORKDIR/ci/playbook.yml -c local -vvvv

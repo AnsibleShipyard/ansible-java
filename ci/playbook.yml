@@ -1,0 +1,20 @@
+---
+#
+# CI Playbook
+#
+
+- hosts: localhost
+  connection: local
+  sudo: yes
+  vars:
+    travis: "{{ lookup('env','TRAVIS') |default('false', true) }}"
+
+  roles:
+    # Only run if not travis
+    - { role: ../../, 
+        travis: "{{ lookup('env','TRAVIS') |default('false', true) }}",
+        when: travis == "false" }
+
+# Only run if not travis
+- include: tests.yml
+  when: travis == "false"
