@@ -21,7 +21,7 @@ script:
 
   # Travis has java built-in. This is a good case for Voom Test-Flight or Docker Hub.
   # Run the role/playbook with ansible-playbook.
-  # - "ansible-playbook -i tests/inventory tests/main.yml --connection=local --sudo -vvvv"
+  # - "ansible-playbook -i tests/inventory tests/travis.yml --connection=local --sudo -vvvv"
 
   # Run java version
   - "java -version"

@@ -32,6 +32,5 @@ ADD ./tests $WORKDIR/tests
 # -----> Install Galaxy Dependencies
 
 # -----> Execute
-# RUN cd $WORKDIR
-RUN pwd && ls -la
 RUN ansible-playbook -i $WORKDIR/docker/inventory $WORKDIR/docker/playbook.yml -c local -vvvv
+RUN ansible-playbook -i $WORKDIR/tests/inventory $WORKDIR/tests/playbook.yml -c local -vvvv

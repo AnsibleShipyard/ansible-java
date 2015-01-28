@@ -1,9 +1,13 @@
 ---
+# travis test file
 
 - hosts: localhost
   connection: local
   sudo: yes
   
+  roles:
+    - ansible-java
+
   tasks:
     # Test for java
     - name: Check java
