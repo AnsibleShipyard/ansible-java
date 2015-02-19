@@ -29,3 +29,7 @@ ADD ./ci $WORKDIR/ci
 
 # -----> Execute
 RUN ansible-playbook -i $WORKDIR/ci/inventory $WORKDIR/ci/playbook.yml -c local -vvvv
+
+# -----> Cleanup
+WORKDIR /
+RUN rm -R /tmp/build
