@@ -4,3 +4,11 @@
 
 - include: RedHat.yml
   when: ansible_os_family == "RedHat"
+
+- name: update alternatives to point to new JAVA installed
+  alternatives: name=java path=/usr/lib/jvm/java-1.{{java_version}}.0-openjdk/jre/bin/java
+  when: java_register_alternative
+
+- name: Register JAVA_HOME env variable
+  lineinfile: dest=/etc/profile state=present line="export JAVA_HOME=/usr/lib/jvm/java-1.{{java_version}}.0-openjdk"
+  when: java_register_env
