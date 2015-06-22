@@ -5,7 +5,7 @@
 - include: RedHat.yml
   when: ansible_os_family == "RedHat"
 
-- name: update RedHat/CentOS alternatives to point to new JAVA installed
+- name: update alternatives to point to new JAVA installed
   alternatives: name=java path=/usr/lib/jvm/java-1.{{java_version}}.0-openjdk/jre/bin/java
   when: java_register_alternative
 
