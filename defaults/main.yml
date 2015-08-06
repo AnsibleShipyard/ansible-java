@@ -1,0 +1,4 @@
+---
+java_version: "7"
+java_register_alternative: false
+java_register_env: false

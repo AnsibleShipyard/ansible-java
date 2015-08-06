@@ -1,7 +1,4 @@
 ---
 java_playbook_version: "0.1.4" # playbook version
-java_version: "7"
 java_libjvm_path: "/usr/lib/jvm/java-{{java_version}}-*/jre/lib/*/server/libjvm.so"
 java_libjvm_symlink_path: "/usr/lib/libjvm.so"
-java_register_alternative: false
-java_register_env: false
