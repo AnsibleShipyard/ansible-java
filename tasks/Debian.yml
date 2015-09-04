@@ -11,13 +11,13 @@
     - openjdk-{{java_version}}-jre-headless
     - openjdk-{{java_version}}-jdk
 
-- name: Resolve {{java_libjvm_path}}
-  shell: find {{java_libjvm_path}}
+- name: Find path for new libjvm.so
+  shell: '{ find -L {{java_base_path}} -type f -path "{{java_base_path}}/java-1.{{java_version}}*openjdk*/libjvm.so"; find -L {{java_base_path}} -type f -path "{{java_base_path}}/java-{{java_version}}*openjdk*/libjvm.so"; } | head -n 1'
   register: libjvm_path_resolved
   changed_when: false
 
 # Here we get back to ansible land...
-- name: Check for {{libjvm_path_resolved}}
+- name: Check for libjvm_path_resolved
   stat: 
     path: "{{libjvm_path_resolved.stdout}}"
   register: libjvm
