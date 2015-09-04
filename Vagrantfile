@@ -5,7 +5,7 @@
 # This is also how travis executes the tests,
 # keeping things the same.
 $ansible_script = <<EOF
-; ansible-playbook -i /home/vagrant/roles/ansible-java/ci/inventory /home/vagrant/roles/ansible-java/ci/playbook.yml --connection=local --sudo -vvvv
+; bash /home/vagrant/roles/ansible-java/ci/test.sh
 EOF
 
 # == If you want nfs set to true ==
