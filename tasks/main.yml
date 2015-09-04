@@ -6,14 +6,21 @@
   when: ansible_os_family == "RedHat"
 
 - name: Find path for new JAVA binary
-  shell: update-alternatives --query java | grep Alternative | grep openjdk | grep -m 1 -e 'java-\(1.\)\{0,1\}{{java_version}}' | cut -f 2 -d " " 
+  shell: update-alternatives --query java | grep Alternative | grep openjdk | grep -m 1 -e 'java-\(1\.\)\{0,1\}{{java_version}}' | cut -f 2 -d " " 
   register: java_bin_path
   changed_when: false
+  when: java_register_alternative
 
 - name: Update alternatives to point to new JAVA installation
   alternatives: name=java path="{{java_bin_path.stdout}}"
   when: java_register_alternative
 
+- name: Find path for new JAVA home
+  shell: '{ find -L {{java_base_path}} -type f -path "{{java_base_path}}/java-1.{{java_version}}*openjdk*/jre/bin/java"; find -L {{java_base_path}} -type f -path "{{java_base_path}}/java-{{java_version}}*openjdk*/jre/bin/java"; } | head -n 1'
+  register: java_home_path
+  changed_when: false
+  when: java_register_env
+
 - name: Register JAVA_HOME env variable
-  lineinfile: dest=/etc/profile regexp="^(export JAVA_HOME=)" state=present line="export JAVA_HOME={{java_bin_path.stdout | replace('/jre/bin/java','')}}"
+  lineinfile: dest=/etc/profile regexp="^(export JAVA_HOME=)" state=present line="export JAVA_HOME={{java_home_path.stdout | replace('/jre/bin/java','')}}"
   when: java_register_env
