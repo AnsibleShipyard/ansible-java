@@ -1,6 +1,6 @@
 - name: Add Ubuntu OpenJDK repo (for additional Java versions)
   apt_repository: repo='ppa:openjdk-r/ppa' state=present
-  when: ansible_lsb.id == 'Ubuntu'
+  when: ansible_lsb.id == 'Ubuntu' and use_openjdk_ppa
 
 - name: Install os packages
   apt: 
