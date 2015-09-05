@@ -15,5 +15,6 @@ Java Playbook for Ansible
 
 This playbook will install Java OpenJDK.
 
+It optionally uses the [ppa:openjdk-r/ppa](https://launchpad.net/~openjdk-r/+archive/ubuntu/ppa) repository for Ubuntu, to add backports of Java, for example OpenJDK 8 on Ubuntu 14.04. Set `use_openjdk_ppa: true` to use the repo.
 
 Support open source!
